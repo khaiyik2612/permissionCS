@@ -13,7 +13,8 @@
 Pull public project from repo
 
 ```bash
-docker pull
+docker pull gcr.io/pulumi-ci-cs/permissionscs
+docker run -d -p8080:8080 gcr.io/pulumi-ci-cs/permissionscs
 ```
 
 ### IDE / bash
@@ -26,6 +27,17 @@ docker pull
 1. Run spring with 
     ``` bash
     ./mvnw spring-boot:run
+    ```
+
+### Building JAR
+
+1. Create JAR file with 
+    ```bash
+    ./mvnw package
+    ```
+2. Run JAR file
+    ```bash
+    java -jar target/{JAR name}.jar
     ```
 
 ## EndPoint
