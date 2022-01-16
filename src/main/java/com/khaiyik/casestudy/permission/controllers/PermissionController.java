@@ -1,6 +1,6 @@
 package com.khaiyik.casestudy.permission.controllers;
 
-import com.khaiyik.casestudy.permission.model.permission;
+import com.khaiyik.casestudy.permission.model.permissions;
 import com.khaiyik.casestudy.permission.service.PermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@Api(tags = "Permission Command", value = "Permission Commands", description = "Controller for Permission Commands")
+@Api(tags = "Permissions Switcher Commands", value = "Permissions Switcher Commands", description = "Controller for Permissions Commands")
 public class PermissionController {
 
     @Autowired
@@ -29,22 +29,22 @@ public class PermissionController {
     }
 
     @GetMapping("/feature")
-    public Map<String, Object> checkPermission(@RequestParam(name="email") String email,@RequestParam(name="permission") String permName) {
-        permission searchObj = new permission();
-        searchObj.setPermission(permName);
+    public Map<String, Object> checkPermissions(@RequestParam(name="email") String email,@RequestParam(name="featureName") String permName) {
+        permissions searchObj = new permissions();
+        searchObj.setFeatureName(permName);
         searchObj.setEmail(email);
-        return permissionService.checkPermission(searchObj);
+        return permissionService.checkPermissions(searchObj);
     }
 
     @GetMapping("/permissions")
-    public List<permission> getPermissions() {
-            return permissionService.getAllPermission();
+    public List<permissions> getPermissions() {
+            return permissionService.getAllPermissions();
     }
 
     @PostMapping("/feature")
-    public ResponseEntity<Object> modPermission(@RequestBody permission params) {
+    public ResponseEntity<Object> modPermissions(@RequestBody permissions params) {
 
-        if (permissionService.addPermission(params))
+        if (permissionService.addPermissions(params))
             return new ResponseEntity<>(HttpStatus.OK);
         else
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);

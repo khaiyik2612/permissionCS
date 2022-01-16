@@ -9,8 +9,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class permission {
-    private @Getter @Setter String permission;
+public class permissions {
+    private @Getter @Setter String featureName;
     private @Getter @Setter String email;
     private @Getter @Setter boolean enable;
 
